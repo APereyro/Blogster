@@ -1,10 +1,15 @@
+const submitForm = document.getElementById('tweetForm');
+console.log("im here");
 const newFormHandler = async (event) => {
-  event.preventDefault();
+event.preventDefault();
 
-  const title = document.querySelector('#post-title').value.trim();
-  const content = document.querySelector('#post-content').value.trim();
+console.log("im here");
 
-  if (title && description) {
+const title = document.querySelector('#post-title').value.trim();
+const content = document.querySelector('#post-content').value.trim();
+console.log(title);
+console.log(content);
+  if (title && content) {
     const response = await fetch(`/api/posts`, {
       method: 'POST',
       body: JSON.stringify({ title, content }),
@@ -24,7 +29,7 @@ const newFormHandler = async (event) => {
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
-
+    console.log(id);
     const response = await fetch(`/api/posts/${id}`, {
       method: 'DELETE',
     });
@@ -37,9 +42,8 @@ const delButtonHandler = async (event) => {
   }
 };
 
-document
-  .querySelector('.new-post-form')
-  .addEventListener('submit', newFormHandler);
+
+submitForm.addEventListener('submit', newFormHandler);
 
 document
   .querySelector('.post-list')
